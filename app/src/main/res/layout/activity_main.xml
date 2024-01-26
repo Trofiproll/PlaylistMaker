@@ -16,6 +16,8 @@
         android:layout_marginTop="-2dp"/>
 
     <Button
+        android:foreground="?attr/selectableItemBackground"
+        android:id="@+id/search_btn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -33,6 +35,8 @@
         />
 
     <Button
+        android:foreground="?attr/selectableItemBackground"
+        android:id="@+id/mediatheka_btn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -47,6 +51,8 @@
         app:iconTint="@color/YP_Black"
         app:cornerRadius="@dimen/main_menu_button_radius"/>
     <Button
+        android:foreground="?attr/selectableItemBackground"
+        android:id="@+id/settings_btn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
