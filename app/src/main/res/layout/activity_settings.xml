@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="?attr/colorSecondary"
     android:orientation="vertical">
     
     <FrameLayout
@@ -22,8 +22,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings"
-            android:textColor="@color/YP_Black"
+            android:textColor="?attr/colorOnSecondary"
             android:textSize="@dimen/main_menu_text"
+            android:fontFamily="@font/ys_display_medium"
+            android:textFontWeight="500"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/menu_title_text_padding"/>
     </FrameLayout>
@@ -33,49 +35,38 @@
         android:layout_height="@dimen/settings_frame"
         android:paddingHorizontal="@dimen/main_layout_padding">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|start"
             android:text="@string/dark_theme"
-            android:textColor="@color/black"
-            android:textSize="@dimen/settings_menu_text"/>
+            style="@style/settings_items_text"/>
         <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end" />
+            style="@style/switch_style"/>
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/settings_share"
         android:layout_width="match_parent"
         android:layout_height="@dimen/settings_frame"
         android:paddingHorizontal="@dimen/main_layout_padding">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|start"
             android:text="@string/share_app"
-            android:textColor="@color/black"
-            android:textSize="@dimen/settings_menu_text"/>
+            style="@style/settings_items_text"/>
         <ImageView
+            style="@style/settings_items_pics"
             android:layout_width="@dimen/menu_icon_width"
             android:layout_height="wrap_content"
             android:src="@drawable/share_icon"
-
             android:layout_gravity="center_vertical|end"/>
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/settings_support"
         android:layout_width="match_parent"
         android:layout_height="@dimen/settings_frame"
         android:paddingHorizontal="@dimen/main_layout_padding">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|start"
             android:text="@string/write_to_support"
-            android:textColor="@color/black"
-            android:textSize="@dimen/settings_menu_text"/>
+            style="@style/settings_items_text"/>
         <ImageView
+            style="@style/settings_items_pics"
             android:layout_width="@dimen/menu_icon_width"
             android:layout_height="wrap_content"
             android:src="@drawable/support_icon"
@@ -83,17 +74,15 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/settings_terms"
         android:layout_width="match_parent"
         android:layout_height="@dimen/settings_frame"
         android:paddingHorizontal="@dimen/main_layout_padding">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|start"
             android:text="@string/terms_of_use"
-            android:textColor="@color/black"
-            android:textSize="@dimen/settings_menu_text"/>
+            style="@style/settings_items_text"/>
         <ImageView
+            style="@style/settings_items_pics"
             android:layout_width="@dimen/menu_icon_width"
             android:layout_height="wrap_content"
             android:src="@drawable/terms_icon"

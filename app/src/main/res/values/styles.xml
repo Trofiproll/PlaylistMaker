@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="main_activity_button" parent="Widget.MaterialComponents.Button">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/YP_Black</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textSize">@dimen/main_menu_text</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">@dimen/main_menu_icon_padding</item>
+        <item name="iconTint">@color/YP_Black</item>
+        <item name="cornerRadius">@dimen/main_menu_button_radius</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textFontWeight">500</item>
+    </style>
+
+    <style name="settings_items_text">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical|start</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textFontWeight">400</item>
+    </style>
+
+    <style name="switch_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical|end</item>
+        <item name="android:trackTint">#E6E8EB</item>
+        <item name="android:thumbTint">#AEAFB4</item>
+    </style>
+</resources>
