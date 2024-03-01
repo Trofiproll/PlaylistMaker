@@ -34,4 +34,9 @@
         <item name="android:trackTint">#E6E8EB</item>
         <item name="android:thumbTint">#AEAFB4</item>
     </style>
+
+    <style name="search_bar_text_color">
+        <item name="android:tint">@color/YP_Text_Gray</item>
+        <item name="android:textColorHint">@color/YP_Text_Gray</item>
+    </style>
 </resources>
