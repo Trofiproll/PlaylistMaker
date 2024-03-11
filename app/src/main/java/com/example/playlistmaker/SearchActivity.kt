@@ -15,7 +15,9 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
 
         val clearBtn = findViewById<ImageView>(R.id.search_clear_button)
+
         val textInput = findViewById<EditText>(R.id.text_inp)
+        textInput.setText(text)
 
         val backBtn = findViewById<ImageView>(R.id.search_back_btn)
         backBtn.setOnClickListener {
@@ -31,6 +33,7 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 clearBtn.visibility = clearButtonVisibility(s)
+                text = s.toString()
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -39,6 +42,8 @@ class SearchActivity : AppCompatActivity() {
         textInput.addTextChangedListener(textWatcher)
     }
 
+
+
     private fun clearButtonVisibility(s: CharSequence?): Int {
         return if (s.isNullOrEmpty()) {
             View.GONE
@@ -46,4 +51,22 @@ class SearchActivity : AppCompatActivity() {
             View.VISIBLE
         }
     }
+
+    private var text: String = EMPTY_TEXT
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(SAVED_TEXT, text)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        text = savedInstanceState.getString(SAVED_TEXT, EMPTY_TEXT)
+    }
+
+    companion object {
+        const val SAVED_TEXT = "SAVED_TEXT"
+        const val EMPTY_TEXT = ""
+    }
+
 }
