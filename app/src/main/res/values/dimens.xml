@@ -4,7 +4,7 @@
     <dimen name="settings_menu_text">16sp</dimen>
     <dimen name="main_menu_padding">16dp</dimen>
     <dimen name="main_menu_icon_padding">10dp</dimen>
-    <dimen name="settings_frame">61dp</dimen>
+    <dimen name="settings_frame">60dp</dimen>
     <dimen name="main_menu_button_radius">16dp</dimen>
     <dimen name="main_layout_padding">16dp</dimen>
     <dimen name="menu_title_bar">56dp</dimen>

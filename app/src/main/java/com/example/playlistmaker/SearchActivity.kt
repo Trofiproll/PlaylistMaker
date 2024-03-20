@@ -1,13 +1,17 @@
 package com.example.playlistmaker
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.core.view.isVisible
 
 class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,18 +25,20 @@ class SearchActivity : AppCompatActivity() {
 
         val backBtn = findViewById<ImageView>(R.id.search_back_btn)
         backBtn.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
 
         clearBtn.setOnClickListener {
             textInput.setText("")
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            inputMethodManager?.hideSoftInputFromWindow(textInput.windowToken, 0)
         }
 
         val textWatcher = object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                clearBtn.visibility = clearButtonVisibility(s)
+                clearBtn.isVisible = !s.isNullOrEmpty()
                 text = s.toString()
             }
 
@@ -44,19 +50,12 @@ class SearchActivity : AppCompatActivity() {
 
 
 
-    private fun clearButtonVisibility(s: CharSequence?): Int {
-        return if (s.isNullOrEmpty()) {
-            View.GONE
-        } else {
-            View.VISIBLE
-        }
-    }
-
     private var text: String = EMPTY_TEXT
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(SAVED_TEXT, text)
+        Log.d("MY_TAG", "onSaveInstanceState")
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -65,8 +64,8 @@ class SearchActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val SAVED_TEXT = "SAVED_TEXT"
-        const val EMPTY_TEXT = ""
+        private const val SAVED_TEXT = "SAVED_TEXT"
+        private const val EMPTY_TEXT = ""
     }
 
 }
