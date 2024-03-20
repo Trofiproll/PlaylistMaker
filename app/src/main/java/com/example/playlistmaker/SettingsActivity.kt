@@ -22,27 +22,25 @@ class SettingsActivity : AppCompatActivity() {
 
         val termsBtn = findViewById<FrameLayout>(R.id.settings_terms)
         termsBtn.setOnClickListener{
-            val url = Uri.parse("https://yandex.ru/legal/practicum_offer/")
+            val url = Uri.parse(getString(R.string.practicum_offer_link))
             val intent = Intent(Intent.ACTION_VIEW, url)
             startActivity(intent)
         }
 
         val supportBtn = findViewById<FrameLayout>(R.id.settings_support)
         supportBtn.setOnClickListener{
-            val message = "Спасибо разработчикам и разработчицам за крутое приложение!"
-            val subject = "Сообщение разработчикам и разработчицам приложения Playlist Maker"
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto:")
-            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("denispartola@gmail.com"))
-            intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-            intent.putExtra(Intent.EXTRA_TEXT, message)
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.support_email)))
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.support_subject))
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.support_message))
             startActivity(intent)
         }
 
         val shareBtn = findViewById<FrameLayout>(R.id.settings_share)
         shareBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
-            intent.putExtra(Intent.EXTRA_TEXT, "https://practicum.yandex.ru/profile/android-developer/")
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_link))
             intent.type = "text/plain"
             startActivity(intent)
         }
