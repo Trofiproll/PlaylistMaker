@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_menu_text">22sp</dimen>
+    <dimen name="settings_menu_text">16sp</dimen>
+    <dimen name="main_menu_padding">16dp</dimen>
+    <dimen name="main_menu_icon_padding">10dp</dimen>
+    <dimen name="settings_frame">60dp</dimen>
+    <dimen name="main_menu_button_radius">16dp</dimen>
+    <dimen name="main_layout_padding">16dp</dimen>
+    <dimen name="menu_title_bar">56dp</dimen>
+    <dimen name="menu_title_text_padding">64dp</dimen>
+    <dimen name="menu_title_icon_padding">20dp</dimen>
+    <dimen name="menu_icon_width">24dp</dimen>
+</resources>

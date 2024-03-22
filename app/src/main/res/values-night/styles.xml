@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="switch_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical|end</item>
+        <item name="android:trackTint">#9FBBF3</item>
+        <item name="android:thumbTint">@color/YP_Blue</item>
+    </style>
+
+    <style name="settings_items_pics">
+        <item name="tint">@color/white</item>
+    </style>
+
+    <style name="search_bar_text_color">
+        <item name="android:tint">@color/YP_Black</item>
+        <item name="android:textColorHint">@color/YP_Black</item>
+        <item name="android:textColor">@color/YP_Black</item>
+    </style>
+</resources>
