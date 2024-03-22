@@ -21,7 +21,7 @@ class TrackViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
             .load(model.artworkUrl100)
             .placeholder(R.drawable.musiclogo)
             .centerCrop()
-            .transform(RoundedCorners(10))
+            .transform(RoundedCorners(2))
             .into(cover)
     }
 }
