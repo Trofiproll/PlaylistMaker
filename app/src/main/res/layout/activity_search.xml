@@ -106,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/search_placeholder_layout"
-            android:visibility="visible">
+            android:visibility="gone">
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -117,6 +117,7 @@
                 android:text="@string/search_error"
                 style="@style/search_placeholder_text"/>
             <Button
+                android:id="@+id/search_update_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/update"
