@@ -82,6 +82,8 @@ class SearchActivity : AppCompatActivity() {
         clearBtn.setOnClickListener {
             queryInput.setText("")
             hideKeyboard()
+            tracks.clear()
+            adapter.notifyDataSetChanged()
         }
 
         val textWatcher = object : TextWatcher{
