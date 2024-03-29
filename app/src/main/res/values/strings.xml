@@ -12,5 +12,9 @@
     <string name="support_subject">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
     <string name="support_email">denispartola@gmail.com</string>
     <string name="share_link">https://practicum.yandex.ru/profile/android-developer/</string>
+    <string name="nothing_found">Ничего не нашлось</string>
+    <string name="search_error">Проблемы со связью\n\nЗагрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="update">Обновить</string>
+
 
 </resources>
