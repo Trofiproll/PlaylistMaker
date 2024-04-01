@@ -124,7 +124,7 @@ class SearchActivity : AppCompatActivity() {
                 Callback<ItunesResponse>{
                 override fun onResponse(call: Call<ItunesResponse>, response: Response<ItunesResponse>) {
                     Log.d("code", response.code().toString())
-                    if (response.code() == 200) {
+                    if (response.isSuccessful) {
                         tracks.clear()
                         adapter.notifyDataSetChanged()
                         if (response.body()?.results?.isNotEmpty() == true) {

@@ -62,7 +62,8 @@
             android:fontFamily="@font/ys_display_regular"
             android:background="@null"
             android:imeOptions="actionDone"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            />
         <ImageView
             style="@style/search_bar_text_color"
             android:id="@+id/search_clear_button"
