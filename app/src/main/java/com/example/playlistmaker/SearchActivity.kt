@@ -27,16 +27,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 class SearchActivity : AppCompatActivity() {
 
 
-    private val HISTORY = "history"
+
 
     private lateinit var clearBtn: ImageView
     private lateinit var queryInput: EditText
     private lateinit var backBtn: ImageView
     private lateinit var searchRecyclerView: RecyclerView
     private lateinit var historyRecyclerView: RecyclerView
+    private lateinit var historyView: LinearLayout
     private lateinit var errorPlaceholder: LinearLayout
     private lateinit var nothingFoundPlaceholder: LinearLayout
     private lateinit var updateBtn: Button
+
 
 
     private var text: String = EMPTY_TEXT
@@ -49,10 +51,11 @@ class SearchActivity : AppCompatActivity() {
         .build()
     private val itunesServise = retrofit.create(ItunesApi::class.java)
     private val tracks = ArrayList<Track>()
-    private val searchAdapter = TrackAdapter(tracks)
 
-    private val history = ArrayList<Track>()
-    private val historyAdapter = TrackAdapter(history)
+    lateinit var searchAdapter: TrackAdapter
+    lateinit var historyAdapter: TrackAdapter
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,28 +68,41 @@ class SearchActivity : AppCompatActivity() {
         historyRecyclerView = findViewById(R.id.search_history_recyclerView)
         errorPlaceholder = findViewById(R.id.search_placeholder_error)
         nothingFoundPlaceholder = findViewById(R.id.search_placeholder_nothing_found)
+        historyView = findViewById(R.id.search_history)
         updateBtn = findViewById(R.id.search_update_button)
         clearBtn = findViewById(R.id.search_clear_button)
 
         queryInput.setText(text)
+
+        val sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE)
+        val history = SearchHistory(sharedPreferences)
+        history.getHistoryFromSP()
+
+        val onTrackClickListener = object : TrackClickListener{
+            override fun onTrackClick(track: Track) {
+                history.putTrackToHistory(track)
+                historyAdapter.notifyDataSetChanged()
+            }
+        }
+        searchAdapter = TrackAdapter(tracks, onTrackClickListener)
+        historyAdapter = TrackAdapter(history.history, onTrackClickListener)
 
         searchRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         searchRecyclerView.adapter = searchAdapter
 
         historyRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         historyRecyclerView.adapter = historyAdapter
-        val sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE)
 
 
         queryInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                itunesSearch()
+                itunesSearch(searchAdapter)
                 true
             }
             false
         }
 
-        updateBtn.setOnClickListener { itunesSearch() }
+        updateBtn.setOnClickListener { itunesSearch(searchAdapter) }
 
         backBtn.setOnClickListener {
             finish()
@@ -105,6 +121,9 @@ class SearchActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 clearBtn.isVisible = !s.isNullOrEmpty()
                 text = s.toString()
+                historyView.isVisible = s.isNullOrEmpty() && queryInput.hasFocus()
+
+
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -134,15 +153,12 @@ class SearchActivity : AppCompatActivity() {
 
 
 
-    private fun getHistoryFromSP(sharedPreferences: SharedPreferences) : Array<Track>?{
-        val json = sharedPreferences.getString(HISTORY, null) ?: return null
-        return Gson().fromJson(json, Array<Track>::class.java)
-    }
 
 
 
 
-    private fun itunesSearch(){
+
+    private fun itunesSearch(searchAdapter: TrackAdapter){
         if(queryInput.text.isNotEmpty()){
             itunesServise.search(queryInput.text.toString()).enqueue(object :
                 Callback<ItunesResponse>{

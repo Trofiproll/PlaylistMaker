@@ -21,7 +21,9 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
 
         val themeSwitcher = findViewById<SwitchMaterial>(R.id.themeSwitcher)
+
         val sharedPrefs = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE)
+
         themeSwitcher.isChecked = sharedPrefs.getBoolean(DARK_MODE_PREFS_KEY,
             AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
 
