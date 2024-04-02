@@ -38,6 +38,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var errorPlaceholder: LinearLayout
     private lateinit var nothingFoundPlaceholder: LinearLayout
     private lateinit var updateBtn: Button
+    private lateinit var clearHistoryBtn: Button
 
 
 
@@ -71,6 +72,7 @@ class SearchActivity : AppCompatActivity() {
         historyView = findViewById(R.id.search_history)
         updateBtn = findViewById(R.id.search_update_button)
         clearBtn = findViewById(R.id.search_clear_button)
+        clearHistoryBtn = findViewById(R.id.clear_history_button)
 
         queryInput.setText(text)
 
@@ -93,6 +95,11 @@ class SearchActivity : AppCompatActivity() {
         historyRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         historyRecyclerView.adapter = historyAdapter
 
+        clearHistoryBtn.setOnClickListener {
+            history.clear()
+            historyAdapter.notifyDataSetChanged()
+            historyView.isVisible = false
+        }
 
         queryInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -100,6 +107,17 @@ class SearchActivity : AppCompatActivity() {
                 true
             }
             false
+        }
+
+
+        queryInput.setOnFocusChangeListener { v, hasFocus ->
+            historyView.isVisible = queryInput.text.isEmpty() && hasFocus
+            searchRecyclerView.isVisible = !historyView.isVisible
+            if(!hasFocus) hideKeyboard()
+            if(historyView.isVisible){
+                errorPlaceholder.isVisible = false
+                nothingFoundPlaceholder.isVisible = false
+            }
         }
 
         updateBtn.setOnClickListener { itunesSearch(searchAdapter) }
@@ -122,8 +140,11 @@ class SearchActivity : AppCompatActivity() {
                 clearBtn.isVisible = !s.isNullOrEmpty()
                 text = s.toString()
                 historyView.isVisible = s.isNullOrEmpty() && queryInput.hasFocus()
-
-
+                searchRecyclerView.isVisible = !historyView.isVisible
+                if(historyView.isVisible){
+                    errorPlaceholder.isVisible = false
+                    nothingFoundPlaceholder.isVisible = false
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {}

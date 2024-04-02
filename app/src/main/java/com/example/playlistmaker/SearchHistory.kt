@@ -24,11 +24,20 @@ class SearchHistory(private val sharedPreferences: SharedPreferences) {
         getHistoryFromSP()
 
         for(i in history){
-            if(i.trackId == track.trackId) history.remove(i)
+            if(i.trackId == track.trackId) {
+                history.remove(i)
+                break
+            }
         }
+
         history.add(0, track)
         if(history.size > 10) history.removeAt(10)
 
+        putHistoryToSP()
+    }
+
+    fun clear(){
+        history.clear()
         putHistoryToSP()
     }
 
