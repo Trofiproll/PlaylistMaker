@@ -6,7 +6,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 
 class App : Application() {
 
-    var darkTheme = false
+    private var darkTheme = false
     override fun onCreate() {
         super.onCreate()
 

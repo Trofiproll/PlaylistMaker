@@ -3,9 +3,12 @@ package com.example.playlistmaker
 import android.content.SharedPreferences
 import com.google.gson.Gson
 
+
+private const val HISTORY = "history"
+private const val UNITS_COUNT = 10 // количество треков в истории
 class SearchHistory(private val sharedPreferences: SharedPreferences) {
 
-    private val HISTORY = "history"
+
     val history = ArrayList<Track>()
 
     fun getHistoryFromSP(){
@@ -31,7 +34,7 @@ class SearchHistory(private val sharedPreferences: SharedPreferences) {
         }
 
         history.add(0, track)
-        if(history.size > 10) history.removeAt(10)
+        if(history.size > UNITS_COUNT) history.removeAt(UNITS_COUNT)
 
         putHistoryToSP()
     }

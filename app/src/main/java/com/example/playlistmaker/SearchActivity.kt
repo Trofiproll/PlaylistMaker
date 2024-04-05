@@ -111,7 +111,7 @@ class SearchActivity : AppCompatActivity() {
 
 
         queryInput.setOnFocusChangeListener { v, hasFocus ->
-            historyView.isVisible = queryInput.text.isEmpty() && hasFocus
+            historyView.isVisible = queryInput.text.isEmpty() && hasFocus && history.history.isNotEmpty()
             searchRecyclerView.isVisible = !historyView.isVisible
             if(!hasFocus) hideKeyboard()
             if(historyView.isVisible){
@@ -139,7 +139,7 @@ class SearchActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 clearBtn.isVisible = !s.isNullOrEmpty()
                 text = s.toString()
-                historyView.isVisible = s.isNullOrEmpty() && queryInput.hasFocus()
+                historyView.isVisible = s.isNullOrEmpty() && queryInput.hasFocus() && history.history.isNotEmpty()
                 searchRecyclerView.isVisible = !historyView.isVisible
                 if(historyView.isVisible){
                     errorPlaceholder.isVisible = false
