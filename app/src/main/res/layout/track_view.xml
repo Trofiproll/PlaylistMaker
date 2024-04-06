@@ -30,6 +30,7 @@
             tools:text="Here Comes The Sun (Remastered 2025)" />
 
         <LinearLayout
+            android:id="@+id/artistView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

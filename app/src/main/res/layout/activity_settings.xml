@@ -29,17 +29,14 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/menu_title_text_padding"/>
     </FrameLayout>
-    
-    <FrameLayout
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/themeSwitcher"
         android:layout_width="match_parent"
         android:layout_height="@dimen/settings_frame"
-        android:paddingHorizontal="@dimen/main_layout_padding">
-        <TextView
-            android:text="@string/dark_theme"
-            style="@style/settings_items_text"/>
-        <Switch
-            style="@style/switch_style"/>
-    </FrameLayout>
+        android:layout_marginHorizontal="@dimen/main_layout_padding"
+        android:text="@string/dark_theme"
+        style="@style/settings_items_text"/>
 
     <FrameLayout
         android:id="@+id/settings_share"

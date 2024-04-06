@@ -8,12 +8,31 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.switchmaterial.SwitchMaterial
 
+
+const val SHARED_PREFERENCES = "shared_preferences"
+const val DARK_MODE_PREFS_KEY = "dark_mode_prefs_key"
 class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+        val themeSwitcher = findViewById<SwitchMaterial>(R.id.themeSwitcher)
+
+        val sharedPrefs = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE)
+
+        themeSwitcher.isChecked = sharedPrefs.getBoolean(DARK_MODE_PREFS_KEY,
+            AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+
+        themeSwitcher.setOnCheckedChangeListener { switcher, checked ->
+            sharedPrefs.edit()
+                .putBoolean(DARK_MODE_PREFS_KEY, checked)
+                .apply()
+            (applicationContext as App).switchTheme(checked)
+        }
 
         val backBtn = findViewById<ImageView>(R.id.settings_back_btn)
         backBtn.setOnClickListener {
