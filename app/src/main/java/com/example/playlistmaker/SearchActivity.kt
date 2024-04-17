@@ -13,6 +13,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
@@ -32,7 +33,7 @@ class SearchActivity : AppCompatActivity() {
 
     private lateinit var clearBtn: ImageView
     private lateinit var queryInput: EditText
-    private lateinit var backBtn: ImageView
+    private lateinit var backBtn: ImageButton
     private lateinit var searchRecyclerView: RecyclerView
     private lateinit var historyRecyclerView: RecyclerView
     private lateinit var historyView: LinearLayout

@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -34,7 +35,7 @@ class SettingsActivity : AppCompatActivity() {
             (applicationContext as App).switchTheme(checked)
         }
 
-        val backBtn = findViewById<ImageView>(R.id.settings_back_btn)
+        val backBtn = findViewById<ImageButton>(R.id.settings_back_btn)
         backBtn.setOnClickListener {
             finish()
         }

@@ -13,14 +13,14 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/menu_title_bar">
-        <ImageView
+        <ImageButton
             android:id="@+id/search_back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_icon"
-            android:layout_gravity="center_vertical"
-            android:scaleType="center"
-            android:layout_marginLeft="@dimen/menu_title_icon_padding"/>
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/menu_title_bar"
+            android:layout_height="@dimen/menu_title_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_icon" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
