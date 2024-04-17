@@ -1,6 +1,7 @@
 package com.example.playlistmaker
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
@@ -31,7 +33,7 @@ class SearchActivity : AppCompatActivity() {
 
     private lateinit var clearBtn: ImageView
     private lateinit var queryInput: EditText
-    private lateinit var backBtn: ImageView
+    private lateinit var backBtn: ImageButton
     private lateinit var searchRecyclerView: RecyclerView
     private lateinit var historyRecyclerView: RecyclerView
     private lateinit var historyView: LinearLayout
@@ -84,6 +86,10 @@ class SearchActivity : AppCompatActivity() {
             override fun onTrackClick(track: Track) {
                 history.putTrackToHistory(track)
                 historyAdapter.notifyDataSetChanged()
+                val intent = Intent(applicationContext, PlayerActivity::class.java)
+                val jsonTrack = Gson().toJson(track)
+                intent.putExtra("track", jsonTrack)
+                startActivity(intent)
             }
         }
         searchAdapter = TrackAdapter(tracks, onTrackClickListener)
