@@ -1,6 +1,7 @@
 package com.example.playlistmaker
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -84,6 +85,10 @@ class SearchActivity : AppCompatActivity() {
             override fun onTrackClick(track: Track) {
                 history.putTrackToHistory(track)
                 historyAdapter.notifyDataSetChanged()
+                val intent = Intent(applicationContext, PlayerActivity::class.java)
+                val jsonTrack = Gson().toJson(track)
+                intent.putExtra("track", jsonTrack)
+                startActivity(intent)
             }
         }
         searchAdapter = TrackAdapter(tracks, onTrackClickListener)
